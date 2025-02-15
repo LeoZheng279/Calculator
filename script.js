@@ -32,6 +32,11 @@ let display = document.querySelector(".display")
 display.textContent = `${a}`;
 for (let num of nums){
     num.addEventListener("click", () => {
+        // 修正逻辑，让它更像实例中的calculator
+        if (a_input ===1 && operator_input===0)
+        {
+            a= 0; a_input = 0; dotted = 0;
+        }
         if (a_input === 0)
         {    
             if (!dotted)
@@ -95,7 +100,7 @@ equal.addEventListener("click", () => {
         a = Number(a.toFixed(9)); // 一个巧妙的化简小数方法
         display.textContent = `${a}`;
         operator_input = 0;
-        b_inputing = 0; b = 0; decimal1 = 0, decimal2 = 0;
+        b_inputing = 0; b = 0;
         if (display.textContent.split("").includes(".")) // V0.1.1 修复可能出现两个小数点的错误
             dotted = 1;
     }
@@ -103,7 +108,7 @@ equal.addEventListener("click", () => {
 
 
 let dot = document.querySelector("#dot");
-let dotted = 0, decimal1 = 0, decimal2 = 0;
+let dotted = 0;
 dot.addEventListener("click", () => {
     if (dotted ===0)
     {
@@ -112,4 +117,39 @@ dot.addEventListener("click", () => {
     }
 })
 
-let ce = document.querySelector("#ce");
+// 下面几个思路差不多，基本都是复制粘贴
+let ce = document.querySelector("#CE");
+ce.addEventListener("click", ()=>{
+    if(a_input===0)
+    {
+        a=0; display.textContent = `${a}`; dotted = 0;
+    }
+    else if (b_inputing)
+    {
+        b=0; display.textContent = `${b}`; dotted = 0;
+    }
+})
+
+let percent = document.querySelector("#percent");
+percent.addEventListener("click", ()=>{
+    if(a_input===0)
+    {
+        a=a/100; display.textContent = `${a}`;
+    }
+    else if (b_inputing)
+    {
+        b=b/100; display.textContent = `${b}`;
+    }
+})
+
+let negate = document.querySelector("#negate");
+negate.addEventListener("click", ()=>{
+    if(a_input===0)
+    {
+        a=-a; display.textContent = `${a}`;
+    }
+    else if (b_inputing)
+    {
+        b=-b; display.textContent = `${b}`;
+    }
+})
