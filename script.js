@@ -95,7 +95,9 @@ equal.addEventListener("click", () => {
         a = Number(a.toFixed(9)); // 一个巧妙的化简小数方法
         display.textContent = `${a}`;
         operator_input = 0;
-        b_inputing = 0; b = 0; 
+        b_inputing = 0; b = 0; decimal1 = 0, decimal2 = 0;
+        if (display.textContent.split("").includes(".")) // V0.1.1 修复可能出现两个小数点的错误
+            dotted = 1;
     }
 })
 
