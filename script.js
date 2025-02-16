@@ -122,7 +122,8 @@ equal.addEventListener("click", () => {
 let dot = document.querySelector("#dot");
 let dotted = 0; // 这个变量同时用来记录是否有小数点 和小数位数，可以拆开
 dot.addEventListener("click", () => {
-    if (a_input ===1 && operator_input===0) // 修复一个小bug：当结果计算完毕时，按下"."不应该有反应
+    if (a_input ===1 && operator_input===0 || b_inputing===0 && operator_input===1) // 修复一个小bug：当结果计算完毕时，按下"."不应该有反应
+    // 又修复一个bug: 当按下运算符，且b未开始输入时，不应按下小数点    
         return ;
     if (dotted ===0)
     {
@@ -220,10 +221,8 @@ const keyMap = {
     '/': 'divide',
     '%': 'percent',
     'Enter': 'equal',
-    '=': 'equal',
     'Backspace': 'CE',
     'Escape': 'AC',
-    '±': 'negate',
   };
 
 document.addEventListener("keydown", (event) =>{
