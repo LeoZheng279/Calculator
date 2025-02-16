@@ -120,8 +120,10 @@ equal.addEventListener("click", () => {
 
 
 let dot = document.querySelector("#dot");
-let dotted = 0;
+let dotted = 0; // 这个变量同时用来记录是否有小数点 和小数位数，可以拆开
 dot.addEventListener("click", () => {
+    if (a_input ===1 && operator_input===0) // 修复一个小bug：当结果计算完毕时，按下"."不应该有反应
+        return ;
     if (dotted ===0)
     {
         dotted = 1;
