@@ -15,7 +15,7 @@
 //     return a/b;
 // }
 
-let a=0, b=0, selected_operator=false, expression = "";
+let a=0, b=0, selected_operator=false;
 let a_input = 0, operator_input = 0, b_inputing = 0;
 function operate(a, b, selected_operator){
     switch (selected_operator){
@@ -28,13 +28,15 @@ function operate(a, b, selected_operator){
 
 
 let nums = document.querySelectorAll(".num");
-let display = document.querySelector(".display")
+let display = document.querySelector(".display");
+let expression = document.querySelector(".expression");
 display.textContent = `${a}`;
 for (let num of nums){
     num.addEventListener("click", () => {
         // 修正逻辑，让它更像实例中的calculator
         if (a_input ===1 && operator_input===0)
         {
+            expression.textContent = "";
             a= 0; a_input = 0; dotted = 0;
         }
         if (a_input === 0)
@@ -47,7 +49,7 @@ for (let num of nums){
                     a = a.toFixed(dotted);
                     dotted++;
                 }
-            display.textContent = `${a}`;
+            display.textContent = `${a}`; // 为了规避输入30.0不显示的问题，先显示再转换
             a = Number(a);
         }
         else if (operator_input===1){
@@ -71,6 +73,7 @@ ac.addEventListener("click", ()=>{
     a=0; b=0; selected_operator = false;
     a_input = 0; operator_input = 0; b_inputing = 0;
     display.textContent = 0; dotted = 0;
+    expression.textContent = "";
 })
 
 
@@ -81,12 +84,20 @@ const operator_list = {
     "multiply": 3,
     "divide": 4,
 };
+const display_list = {
+    "plus": "+",
+    "subtract": "-",
+    "multiply": "×",
+    "divide": "÷",
+};
 for (let operator of operators){
     operator.addEventListener("click", () => {
         if (b_inputing === 0)
         {
+            expression.textContent = `${a}`;
             a_input = 1; operator_input=1; dotted = 0;
             selected_operator = operator_list[operator.id];
+            expression.textContent += `${display_list[operator.id]}`;
         }
     })
 }
@@ -96,8 +107,9 @@ let equal = document.querySelector("#equal");
 equal.addEventListener("click", () => {
     if (a_input && operator_input && b_inputing)
     {
+        expression.textContent += `${b}`;
         a = operate(a, b, selected_operator);
-        a = Number(a.toFixed(9)); // 一个巧妙的化简小数方法
+        a = Number(a.toFixed(8)); // 一个巧妙的化简小数方法
         display.textContent = `${a}`;
         operator_input = 0;
         b_inputing = 0; b = 0;
