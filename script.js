@@ -165,3 +165,57 @@ negate.addEventListener("click", ()=>{
         b=-b; display.textContent = `${b}`;
     }
 })
+
+// 加入键盘支持
+const keyMap = {
+    '0': 'n0',
+    '1': 'n1',
+    '2': 'n2',
+    '3': 'n3',
+    '4': 'n4',
+    '5': 'n5',
+    '6': 'n6',
+    '7': 'n7',
+    '8': 'n8',
+    '9': 'n9',
+    '.': 'dot',
+    '+': 'plus',
+    '-': 'subtract',
+    '*': 'multiply',
+    '/': 'divide',
+    '%': 'percent',
+    'Enter': 'equal',
+    '=': 'equal',
+    'Backspace': 'CE',
+    'Escape': 'AC',
+    '±': 'negate',
+  };
+
+document.addEventListener("keydown", (event) =>{
+    const key = event.key;
+    const buttonID = keyMap[key];
+
+    if(buttonID)
+    {
+        const button = document.getElementById(buttonID);
+        if (button)
+        {
+            button.click();
+            button.classList.add("active");
+        }
+    }
+})
+
+document.addEventListener("keyup", (event) =>{
+    const key = event.key;
+    const buttonID = keyMap[key];
+
+    if(buttonID)
+    {
+        const button = document.getElementById(buttonID);
+        if (button)
+        {
+            button.classList.remove("active");
+        }
+    }
+})
