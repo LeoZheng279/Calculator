@@ -109,7 +109,7 @@ equal.addEventListener("click", () => {
     {
         expression.textContent += `${b}`;
         a = operate(a, b, selected_operator);
-        a = Number(a.toFixed(8)); // 一个巧妙的化简小数方法
+        a = Number(a.toFixed(8)); // 一个巧妙的化简小数方法,这样子可以消掉结果中的多余0，同时避免由于计算机小数误差造成的错误
         display.textContent = `${a}`;
         operator_input = 0;
         b_inputing = 0; b = 0;

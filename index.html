@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
-    <script>
+    <script defer>
         /* 鼠标跟随光效 */
-    document.addEventListener('mousemove', (e) => {
-    const header = document.getElementById('header');
-    const rect = header.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    header.style.setProperty('--x', `${x}px`);
-    header.style.setProperty('--y', `${y}px`);
-  });
+        document.addEventListener('mousemove', (e) => {
+            const header = document.getElementById('header');
+            const rect = header.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            header.style.setProperty('--x', `${x}px`);
+            header.style.setProperty('--y', `${y}px`);
+        });
     </script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="./icons.png" />
