@@ -134,11 +134,44 @@ let ce = document.querySelector("#CE");
 ce.addEventListener("click", ()=>{
     if(a_input===0)
     {
-        a=0; display.textContent = `${a}`; dotted = 0;
+        if (dotted ===1)
+            dotted = 0;
+        else if (!dotted)
+            a=(a-a%10)/10;
+        else
+        {
+            a = (a*Math.pow(10, dotted-1)-a*Math.pow(10, dotted-1)%10)/Math.pow(10, dotted-1);
+            dotted--;
+        }
+
+        if(dotted>=1)
+            display.textContent = `${a.toFixed(dotted-1)}`;
+        else 
+        display.textContent = `${a}`;
+
+        if(dotted ===1)
+            display.textContent = display.textContent + ".";
     }
     else if (b_inputing)
     {
-        b=0; display.textContent = `${b}`; dotted = 0;
+        if (dotted ===1)
+            dotted = 0;
+        else if (!dotted)
+            b=(b-b%10)/10;
+        else
+        {
+            b = (b*Math.pow(10, dotted-1)-b*Math.pow(10, dotted-1)%10)/Math.pow(10, dotted-1);
+            dotted--;
+        }
+
+        if(dotted>=1)
+            display.textContent = `${b.toFixed(dotted-1)}`;
+        else 
+        display.textContent = `${b}`;
+
+        display.textContent = `${b.toFixed(dotted-1)}`;
+        if(dotted ===1)
+            display.textContent = display.textContent + ".";
     }
 })
 
