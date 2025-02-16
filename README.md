@@ -1,5 +1,7 @@
 # Calculator
 Odin Project's "Calculator" Project in the Foundations Course
+#### Video Demo:  https://youtu.be/v77-vpKV1LY
+#### Description:
 
 ## Features
 1. Performs operations accurate to 8 decimal places
